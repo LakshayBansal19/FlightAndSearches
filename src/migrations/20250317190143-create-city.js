@@ -11,7 +11,8 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
-        allowNull:false
+        allowNull:false,    //IF I AM ADDING DATA THROUGH DB/e.g. SQL then it will not allow it to be null
+        unique:true
       },
       createdAt: {
         allowNull: false,
