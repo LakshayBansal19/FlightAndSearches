@@ -3,6 +3,7 @@ class cityRepository{
     async createCity({name}){
         try{
             const city=City.create({name});
+            return city;
         }catch(error){
             console.log("Something went wrong in the repository layer");
             throw {error};
@@ -16,6 +17,7 @@ class cityRepository{
                 }
             }
             );
+            return true;
         }catch(error){
             console.log("Something went wrong in the repository layer");
             throw {error};
