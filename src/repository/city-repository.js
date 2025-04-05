@@ -2,7 +2,7 @@ const {City}=require('../models/index');
 class cityRepository{
     async createCity({name}){
         try{
-            const city=City.create({name});
+            const city=await City.create({name});
             return city;
         }catch(error){
             console.log("Something went wrong in the repository layer");
@@ -25,7 +25,7 @@ class cityRepository{
     }
     async updateCity(cityId,data){  //data is the object that needs to be put in place of old data
         try{
-            const city=City.update(data,{
+            const city=await City.update(data,{
                 where:{
                     id:cityId
                 }
@@ -40,7 +40,7 @@ class cityRepository{
     }
     async getCity(cityId){
         try{
-            const city=City.findByPk(cityId);
+            const city=await City.findByPk(cityId);
             return city;
         }catch(error){
             console.log("Something went wrong in the repository layer");
