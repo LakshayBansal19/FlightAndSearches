@@ -25,11 +25,15 @@ class cityRepository{
     }
     async updateCity(cityId,data){  //data is the object that needs to be put in place of old data
         try{
-            const city=await City.update(data,{
-                where:{
-                    id:cityId
-                }
-            });
+            // this commented approach also works but will not return updated object
+            // const city=await City.update(data,{
+            //     where:{
+            //         id:cityId
+            //     }
+            // });
+            const city=await City.findByPk(cityId);
+            city.name=data.name;
+            await city.save();
             return city;
 
         }catch(error){
