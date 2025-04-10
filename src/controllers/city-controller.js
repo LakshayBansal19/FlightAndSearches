@@ -22,6 +22,25 @@ const create=async (req,res)=>{
         });
     }
 }
+const createAll=async (req,res)=>{
+    try{
+        const cities=await cityService.createCities(req.body);
+        return res.status(201).json({
+            data:cities,
+            success:true,
+            message:"successfully created the cities",
+            err:{}
+        });
+    }catch(error){
+        console.log(error);
+        return res.status(500).json({
+            data:{},
+            success:false,
+            message:"Not able to create a city",
+            err:error
+        });
+    }
+}
 //DELETE -> 'city/:id'
 const destroy=async (req,res)=>{
     try{
@@ -101,10 +120,31 @@ const getAll=async(req,res)=>{
         });
     }
 }
+const getAirports=async (req,res)=>{
+    try{
+        const airports=await cityService.getAirportsOfCity(req.params.id);
+        return res.status(201).json({
+            data:airports,
+            success:true,
+            message:"successfully fetched the airports",
+            err:{}
+        });
+    }catch(error){
+        console.log(error);
+        return res.status(500).json({
+            data:{},
+            success:false,
+            message:"Not able to retrieve the airports",
+            err:error
+        });
+    }
+}
 module.exports={
     create,
+    createAll,
     destroy,
     update,
     get,
-    getAll
+    getAll,
+    getAirports
 }

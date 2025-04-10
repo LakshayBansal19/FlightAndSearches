@@ -15,7 +15,7 @@ const setupAndStartServer=async()=>{
     app.use(bodyParser.urlencoded({extended:true}));
 
     app.use('/api',ApiRoutes);
-    if(process.env.SYNC_DB){
+    if(process.env.SYNC_DB===true){
         db.sequelize.sync({alter:true});
     }
     // const city=await City.findOne({
