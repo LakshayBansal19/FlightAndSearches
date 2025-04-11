@@ -1,11 +1,12 @@
 const { response } = require("express");
 const{AirportService}=require("../services/index");
+const {SuccessCodes}=require('../utils/error-codes');
 const airportService=new AirportService();
 
 const create=async(req,res)=>{
     try{
         const airport=await airportService.createAirport(req.body);
-        return res.status(201).json({
+        return res.status(SuccessCodes.CREATED).json({
             data:airport,
             success:true,
             message:"Successfully created the airport",
@@ -22,8 +23,8 @@ const create=async(req,res)=>{
 }
 const createAll=async(req,res)=>{
     try{
-        const airports=await airportService.createAllAirports(req.body);
-        return res.status(201).json({
+        const airports=await airportService.createAirports(req.body);
+        return res.status(SuccessCodes.CREATED).json({
             data:airports,
             success:true,
             message:"Successfully created the airports",
@@ -41,7 +42,7 @@ const createAll=async(req,res)=>{
 const destroy=async(req,res)=>{
     try{
         const response=await airportService.deleteAirport(req.params.id);
-        return res.status(201).json({
+        return res.status(SuccessCodes.OK).json({
             data:response,
             success:true,
             message:"Successfully deleted the airport",
@@ -59,7 +60,7 @@ const destroy=async(req,res)=>{
 const destroyAll=async(req,res)=>{
     try{
         const response=await airportService.deleteAllAirports(req.query);
-        return res.status(201).json({
+        return res.status(SuccessCodes.OK).json({
             data:response,
             success:true,
             message:"Successfully deleted the airports",
@@ -77,7 +78,7 @@ const destroyAll=async(req,res)=>{
 const update=async(req,res)=>{
     try{
         const airport=await airportService.updateAirport(req.params.id,req.body);
-        return res.status(201).json({
+        return res.status(SuccessCodes.OK).json({
             data:airport,
             success:true,
             message:"Successfully fetched the airport",
@@ -95,7 +96,7 @@ const update=async(req,res)=>{
 const get=async(req,res)=>{
     try{
         const airport=await airportService.getAirport(req.params.id);
-        return res.status(201).json({
+        return res.status(SuccessCodes.OK).json({
             data:airport,
             success:true,
             message:"Successfully fetched the airport",
@@ -113,7 +114,7 @@ const get=async(req,res)=>{
 const getAll=async(req,res)=>{
     try{
         const airport=await airportService.getAllAirports(req.query);
-        return res.status(201).json({
+        return res.status(SuccessCodes.OK).json({
             data:airport,
             success:true,
             message:"Successfully fetched the airport",
