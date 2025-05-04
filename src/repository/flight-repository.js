@@ -18,14 +18,13 @@ class FlightRepository{
         if(data.maxPrice){
             priceFilter.push({price:{[Op.lte]:data.maxPrice}});
         }
-        //if(data.minPrice  || data.maxPrice){
-            Object.assign(filter,{[Op.and]:priceFilter});
+        Object.assign(filter,{[Op.and]:priceFilter});
         
         return filter;
     }
     /**where:{
-    *     price:{
-    *         [op.end ]:{[Op.gte]:minPrice},{[Op.lte]:maxPrice}
+    *     {
+    *         [op.end ]:[{price:{[Op.gte]:minPrice}},{price:{[Op.lte]:maxPrice}]
     *     }
     * }
     */

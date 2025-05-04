@@ -61,4 +61,4 @@ class CrudRepository{
 
     }
 }
-model.exports=CrudRepository;
+module.exports=CrudRepository;
